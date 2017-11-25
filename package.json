@@ -1,0 +1,24 @@
+{
+  "name": "mli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiffenGood/mli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GiffenGood/mli/issues"
+  },
+  "homepage": "https://github.com/GiffenGood/mli#readme",
+  "dependencies": {
+    "firebase": "^4.6.2",
+    "firestore": "^1.1.6"
+  },
+  "devDependencies": {}
+}

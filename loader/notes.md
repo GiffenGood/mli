@@ -4,12 +4,17 @@
 
 define a dbconfig.ts like this:
 
-let config = {
-    user: 'changeme',
-    password: 'changeme',
-    connectString: 'changeme'
+let oracleConfig = {
+    user: '',
+    password: '',
+    connectString: ''
 }
 
-export { config }
+let firebaseConfig = {
+    user : '',
+    password : ''
+}
+
+export { oracleConfig, firebaseConfig }
 
 ```
