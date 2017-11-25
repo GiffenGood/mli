@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "oracledb": "^1.13.1"
+  },
+  "devDependencies": {
+    "@types/oracledb": "^1.11.34"
   }
 }
