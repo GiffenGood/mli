@@ -9,9 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/firestore": "^0.10.0",
+    "firebase-admin": "^5.5.1",
     "oracledb": "^1.13.1"
   },
   "devDependencies": {
+    "@types/firebase": "^2.4.32",
     "@types/oracledb": "^1.11.34"
   }
 }

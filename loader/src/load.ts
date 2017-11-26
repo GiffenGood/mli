@@ -1,23 +1,25 @@
+import { Firestore } from '@google-cloud/firestore';
 import { ICustomer } from './../../common/src/customer';
 import * as oracledb from 'oracledb';
-import { oracleConfig, firebaseConfig } from "./dbconfig";
+import { oracleConfig, fbConfig, fbDBURL } from "./dbconfig";
 import { scaffoldInterface } from './metadata';
 import { IConnection } from 'oracledb';
-import * as firebase from 'firebase';
-import { getFirebaseConfig } from './fbconfig';
+import * as fbAdmin from "firebase-admin";
 
 async function doIt() {
-    let conn = await oracledb.getConnection(oracleConfig);
-
+    let conn = undefined;
     try {
+        let fbApp = fbAdmin.initializeApp({
+            credential: fbAdmin.credential.cert(fbConfig),
+            databaseURL: fbDBURL
+        });
 
-        let fbApp = await initFB();
-        if(!fbApp) return;
-        let fbDB = firebase.firestore();
+        let fbDB = fbApp.firestore();
 
-        let res = await conn.execute("select * from customer where sync_date is null",
-        [],
-        { outFormat: oracledb.OBJECT, resultSet: true, extendedMetaData : false });        
+        let conn = await oracledb.getConnection(oracleConfig);
+        let res = await conn.execute("select * from customer where sync_date is null order by c_rsn",
+            [],
+            { outFormat: oracledb.OBJECT, resultSet: true, extendedMetaData: false });
 
         let stop = false;
         let x = 0;
@@ -27,34 +29,26 @@ async function doIt() {
                 stop = true;
             }
             else {
-                await addToFireBase(fbApp,'customers',row, row.C_RSN);
-                udateLastSyncDate(conn, 'customer', 'c_rsn', row.C_RSN);
+                await addToFireBase(fbDB, 'customers', row, row.C_RSN);
+                await udateLastSyncDate(conn, 'customer', 'c_rsn', row.C_RSN);
+                console.log(row.C_FORMALNAME);
                 x++;
             }
         }
         console.log(`Total Count ${x}`);
     }
+    catch (error) {
+        console.log(error);
+    }
     finally {
-        conn.close();
+        if (conn) conn.close();
         process.exit();
     }
 }
 
-async function addToFireBase(fbApp : firebase.firestore.Firestore, collectionKey : string, data : any, key : number){
-
-}
-
-async function initFB() {
-    let fbApp = firebase.initializeApp(getFirebaseConfig())
-    try {
-        await firebase.auth().signInWithEmailAndPassword(firebaseConfig.user,firebaseConfig.password)
-        console.log('login sucessful');
-        return fbApp;
-    }
-    catch (error) {
-        console.log(error);
-    } 
-    return undefined;  
+async function addToFireBase(fbDB: FirebaseFirestore.Firestore, collectionKey: string, data: any, key: number) {
+    let doc = await fbDB.collection("customers").doc(key.toString());
+    await doc.set(data);
 }
 
 async function udateLastSyncDate(conn: IConnection, tableName: string, id: string, rsn: number) {
@@ -62,4 +56,4 @@ async function udateLastSyncDate(conn: IConnection, tableName: string, id: strin
     var res = await conn.execute(sql, { rsn: rsn }, { autoCommit: true });
 }
 
-doIt();    
+doIt();
