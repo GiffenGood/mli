@@ -3,7 +3,7 @@ import * as oracledb from 'oracledb';
 import { oracleConfig, firebaseConfig } from "./dbconfig";
 import { scaffoldInterface } from './metadata';
 import { IConnection } from 'oracledb';
-import * as fb from 'firebase';
+import * as firebase from 'firebase';
 import { getFirebaseConfig } from './fbconfig';
 
 async function doIt() {
@@ -11,8 +11,9 @@ async function doIt() {
 
     try {
 
-        let fbApp = initFB();
+        let fbApp = await initFB();
         if(!fbApp) return;
+        let fbDB = firebase.firestore();
 
         let res = await conn.execute("select * from customer where sync_date is null",
         [],
@@ -26,7 +27,7 @@ async function doIt() {
                 stop = true;
             }
             else {
-                await addToFireBase(fb,'customers',row,)
+                await addToFireBase(fbApp,'customers',row, row.C_RSN);
                 udateLastSyncDate(conn, 'customer', 'c_rsn', row.C_RSN);
                 x++;
             }
@@ -39,10 +40,14 @@ async function doIt() {
     }
 }
 
+async function addToFireBase(fbApp : firebase.firestore.Firestore, collectionKey : string, data : any, key : number){
+
+}
+
 async function initFB() {
-    let fbApp = fb.initializeApp(getFirebaseConfig())
+    let fbApp = firebase.initializeApp(getFirebaseConfig())
     try {
-        await fb.auth().signInWithEmailAndPassword(firebaseConfig.user,firebaseConfig.password)
+        await firebase.auth().signInWithEmailAndPassword(firebaseConfig.user,firebaseConfig.password)
         console.log('login sucessful');
         return fbApp;
     }
