@@ -1,0 +1,28 @@
+[debug] [2017-11-26T16:02:12.184Z] ----------------------------------------------------------------------
+[debug] [2017-11-26T16:02:12.188Z] Command:       D:\Program Files\nodejs\node.exe C:\Users\MBeckius\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-11-26T16:02:12.188Z] CLI Version:   3.15.3
+[debug] [2017-11-26T16:02:12.188Z] Platform:      win32
+[debug] [2017-11-26T16:02:12.188Z] Node Version:  v8.9.1
+[debug] [2017-11-26T16:02:12.189Z] Time:          Sun Nov 26 2017 11:02:12 GMT-0500 (Eastern Standard Time)
+[debug] [2017-11-26T16:02:12.189Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-26T16:02:12.208Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-26T16:02:12.208Z] > authorizing via signed-in user
+[debug] [2017-11-26T16:02:12.212Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mliman-42  
+ Sun Nov 26 2017 11:02:12 GMT-0500 (Eastern Standard Time)
+[debug] [2017-11-26T16:02:12.549Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-26T16:02:12.550Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mliman-42/tokens  
+ Sun Nov 26 2017 11:02:12 GMT-0500 (Eastern Standard Time)
+[debug] [2017-11-26T16:02:12.912Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\dev\MLI\portal'...
+[info] 
+[debug] [2017-11-26T16:02:12.916Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/mliman-42  
+ Sun Nov 26 2017 11:02:12 GMT-0500 (Eastern Standard Time)
+[debug] [2017-11-26T16:02:13.181Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-26T16:02:13.181Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/366625098015/clients/_:getWebAppConfig  
+ Sun Nov 26 2017 11:02:13 GMT-0500 (Eastern Standard Time)
+[debug] [2017-11-26T16:02:13.586Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

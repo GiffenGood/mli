@@ -16,9 +16,6 @@
     "url": "https://github.com/GiffenGood/mli/issues"
   },
   "homepage": "https://github.com/GiffenGood/mli#readme",
-  "dependencies": {
-    "firebase": "^4.6.2",
-    "firestore": "^1.1.6"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

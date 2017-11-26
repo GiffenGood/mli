@@ -2,7 +2,7 @@
 
 ```javascript
 
-define a dbconfig.ts like this:
+import * as fbAdmin from "firebase-admin";
 
 let oracleConfig = {
     user: '',
@@ -10,11 +10,16 @@ let oracleConfig = {
     connectString: ''
 }
 
-let firebaseConfig = {
-    user : '',
-    password : ''
+let fbConfig : fbAdmin.ServiceAccount = {
+    projectId : "",
+    privateKey : "",
+    clientEmail : ""
 }
 
-export { oracleConfig, firebaseConfig }
+let fbDBURL = "";
+
+export { oracleConfig, fbConfig, fbDBURL }
 
 ```
+
+1. OracelDB needed to be installed with 2015 command prompt in admin.
