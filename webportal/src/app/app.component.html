@@ -1,0 +1,15 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  UserName:<input #userName>  Password <input #password> 
+  <button (click)="login(userName.value,password.value)">Login </button>
+  <div>
+    <button (click)="fetch()">Fetch</button>
+    <ul>
+      <li *ngFor="let cust of customers">
+          {{cust.C_FORMALNAME}}
+      </li>
+    </ul>
+  </div>
+  
+
+</div>
