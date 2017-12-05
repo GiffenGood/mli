@@ -1,5 +1,9 @@
 https://github.com/angular/angularfire2/blob/master/docs/firestore/documents.md
 
+https://coursetro.com/posts/code/67/Angular-4-Material-Tutorial
+
+https://www.udemy.com/styling-angular-applications-with-angular-material/learn/v4/t/lecture/6640478?start=0
+
 
 # Webportal
 
