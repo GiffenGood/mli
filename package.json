@@ -16,6 +16,7 @@
     "url": "https://github.com/GiffenGood/mli/issues"
   },
   "homepage": "https://github.com/GiffenGood/mli#readme",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {}
 }

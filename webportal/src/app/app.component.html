@@ -1,15 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
+<mat-toolbar color="primary">
+  <span>My Application</span>
+</mat-toolbar>
+<div class="content">
   UserName:<input #userName>  Password <input #password> 
   <button (click)="login(userName.value,password.value)">Login </button>
   <div>
-    <button (click)="fetch()">Fetch</button>
+    <button mat-button (click)="fetch()">Fetch</button>
     <ul>
       <li *ngFor="let cust of customers">
           {{cust.C_FORMALNAME}}
       </li>
     </ul>
   </div>
-  
 
 </div>
