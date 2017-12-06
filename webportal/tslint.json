@@ -118,13 +118,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "mli",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "mli",
       "kebab-case"
     ],
     "angular-whitespace": [true, "check-interpolation"],

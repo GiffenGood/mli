@@ -7,10 +7,19 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material.module';
+import { LoginComponent } from './login/login.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
+
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    CustomerListComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +27,8 @@ import { MaterialModule } from '../material.module';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

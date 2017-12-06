@@ -1,57 +1,16 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar color="primary">
-  <span>My Application</span>
+    <button mat-icon-button (click)="toggle(side)">
+      <mat-icon>menu</mat-icon>
+    </button>
 </mat-toolbar>
 
-<mat-expansion-panel [hideToggle]="show">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Logon
-    </mat-panel-title>
-    <mat-panel-description>
-      Logon to the Portal
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-
-  <div>
-    <form class="example-form">
-      <mat-form-field>
-        <input matInput placeholder="UserName" #userName>
-      </mat-form-field>
-      <mat-form-field>
-        <input type="password" matInput placeholder="Password" #password>
-      </mat-form-field>
-
-      <button type="button" mat-raised-button (click)="login(userName.value,password.value)">Login </button>
-    </form>
+<mat-sidenav-container>
+    <mat-sidenav #side mode="side" opened="true">Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
 
-    <button mat-raised-button (click)="toggle()">Fetch</button>
-  </div>
+  
 
-</mat-expansion-panel>
-
-<div>
-
-  <div>
-    <button mat-raised-button (click)="fetch()">Fetch</button>
-    <ul>
-      <li *ngFor="let cust of customers">
-        {{cust.C_FORMALNAME}}
-      </li>
-    </ul>
-  </div>
-
-
-
-</div>
-
-<mat-grid-list cols="4" rowHeight="100px">
-  <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
-  </mat-grid-tile>
-</mat-grid-list>

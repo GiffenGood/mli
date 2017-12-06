@@ -1,0 +1,14 @@
+<div class="mli-container">
+  <h1>Login</h1>
+  <form class="example-form">
+    <mat-form-field>
+      <input matInput placeholder="UserName" #userName>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" #password>
+    </mat-form-field>
+  </form>
+  <div>
+    <button type="button" mat-raised-button (click)="login(userName.value,password.value)">Login </button>
+  </div>
+</div>
