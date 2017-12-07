@@ -1,16 +1,23 @@
-<mat-toolbar color="primary">
+<div>
+
+  <mat-toolbar color="primary" class="mli-header">
     <button mat-icon-button (click)="toggle(side)">
       <mat-icon>menu</mat-icon>
     </button>
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-sidenav-container>
-    <mat-sidenav #side mode="side" opened="true">Sidenav content</mat-sidenav>
+  <mat-sidenav-container class="mli-sidenav-container">
+    <mat-sidenav #side mode="side" opened="true" class="mli-sidenav">
+      Sidenav content
+    </mat-sidenav>
+
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div class="mli-container">
+          <router-outlet></router-outlet>
+      </div>
+      
     </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-sidenav-container>
 
-
-  
-
+  <mat-toolbar color="accent" class="mli-footer">Footer</mat-toolbar>
+</div>

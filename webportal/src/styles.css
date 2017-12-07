@@ -1,10 +1,6 @@
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
 body{
     margin: 0px;
     font-family: Roboto, 'Helvetica New'
-}
-
-.mli-container{
-    margin : 10px
 }

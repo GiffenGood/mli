@@ -24,8 +24,6 @@ export class AppComponent {
   constructor(private db: AngularFirestore) {
   }
 
-
-
   fetch() {
     this.db.firestore.collection('customers').get().then((res) => {
       this.customers = [];
