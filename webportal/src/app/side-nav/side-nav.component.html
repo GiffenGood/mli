@@ -1,10 +1,10 @@
 <div id="container">
-  <u>
-    <li [ngClass]="color" (mouseover)="color='hover'" (mouseout)="color='none'">
-      <a routerLink="/customers">Customers</a>
-    </li>
-    <li [ngClass]="color" (mouseover)="color='hover'" (mouseout)="color='none'">
-      <a routerLink="/login">Login</a>
-    </li>
-  </u>
+  <button mat-raised-button  routerLink="/login">
+    <mat-icon>vpn_key</mat-icon>
+    <span>Login</span>
+  </button>
+  <button  mat-raised-button routerLink="/customers">
+    <mat-icon>person_outline</mat-icon>
+    <span>Customers</span>
+  </button>
 </div>
