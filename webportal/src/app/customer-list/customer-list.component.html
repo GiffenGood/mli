@@ -1,4 +1,18 @@
+<h1>Customer Search</h1>
+<form class="example-form" #searchForm="ngForm">
+  <mat-form-field>
+    <input matInput name="customerName" placeholder="Customer Name" 
+      [(ngModel)]="search.name" [disabled]="search.zip != ''">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="zipCode" placeholder="Zip Code" 
+    [(ngModel)]="search.zip" [disabled]="search.name != ''">
+  </mat-form-field>
+  <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()" >Search</button>
+</form>
 
-<p *ngFor="let x of stuff">
-  customer-list works! {{x}}
+<h1 *ngIf="searching">Searching....</h1>
+
+<p *ngFor="let c of customers">
+  {{c.C_FORMALNAME}} {{c.C_TELNO}}
 </p>
