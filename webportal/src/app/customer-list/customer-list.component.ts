@@ -10,6 +10,7 @@ import * as fb from 'firebase/app';
 export class CustomerListComponent implements OnInit {
   customers: any[];
   searching = false;
+  feedbackMsg = '';
   search = {
     name: '',
     zip: ''
@@ -22,12 +23,13 @@ export class CustomerListComponent implements OnInit {
 
   disableSearch() {
     return this.searching ||
-     (!this.search.name && !this.search.zip) ||
-     (this.search.name.length < 3 && this.search.zip.length < 5);
+      (!this.search.name && !this.search.zip) ||
+      (this.search.name.length < 3 && this.search.zip.length < 5);
   }
 
   doSearch() {
     this.searching = true;
+    this.feedbackMsg = 'Searching...';
     this.customers = [];
     const data = [];
     const custRef = this.angularfireStore.firestore.collection('customers');
@@ -46,9 +48,16 @@ export class CustomerListComponent implements OnInit {
         data.push(doc.data());
       });
       this.customers = data;
-      console.log(this.customers);
+      this.feedbackMsg = (data.length === 0) ? 'No Results Found.' : '';
     }).then(() => {
       this.searching = false;
+      this.search = {
+        name : '',
+        zip : ''
+      };
+    }).catch((e) => {
+      this.feedbackMsg = 'An error occured';
+      console.log(e);
     });
   }
 

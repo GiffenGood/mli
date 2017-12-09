@@ -11,7 +11,7 @@
   <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()" >Search</button>
 </form>
 
-<h1 *ngIf="searching">Searching....</h1>
+<h1>{{feedbackMsg}}</h1>
 
 <p *ngFor="let c of customers">
   {{c.C_FORMALNAME}} {{c.C_TELNO}}
