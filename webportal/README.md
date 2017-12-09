@@ -5,6 +5,14 @@ https://coursetro.com/posts/code/67/Angular-4-Material-Tutorial
 https://www.udemy.com/styling-angular-applications-with-angular-material/learn/v4/t/lecture/6640478?start=0
 
 
+1- Finish Login 
+2- Add Route Guard
+3- Layout Customer Search
+    how to handle small devices.
+4- Immplement Detail
+
+
+
 # Webportal
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.3.
