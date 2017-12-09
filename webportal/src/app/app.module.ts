@@ -13,13 +13,15 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CustomerListComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,

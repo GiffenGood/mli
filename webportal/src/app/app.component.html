@@ -8,14 +8,13 @@
 
   <mat-sidenav-container class="mli-sidenav-container">
     <mat-sidenav #side mode="side" opened="true" class="mli-sidenav">
-      Sidenav content
+      <mli-side-nav></mli-side-nav>
     </mat-sidenav>
-
     <mat-sidenav-content>
       <div class="mli-container">
-          <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
       </div>
-      
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 
