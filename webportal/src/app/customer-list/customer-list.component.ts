@@ -35,10 +35,10 @@ export class CustomerListComponent implements OnInit {
     const custRef = this.angularfireStore.firestore.collection('customers');
     let searchRef: fb.firestore.Query;
     if (this.search.name) {
-      searchRef = custRef.where('C_FORMALNAME', '>=', this.search.name).orderBy('C_FORMALNAME');
+      searchRef = custRef.where('C_FORMALNAME', '==', this.search.name);
     }
     else if (this.search.zip) {
-      searchRef = custRef.where('C_ZIP', '>=', this.search.zip).orderBy('C_ZIP');
+      searchRef = custRef.where('C_ZIP', '==', this.search.zip);
     }
     if (!searchRef) {
       return;

@@ -25,7 +25,7 @@ async function doIt() {
         let x = 0;
         while (!stop && res.resultSet) {
             let row = <ICustomer>await res.resultSet.getRow();
-            if (!row || x == 10) {
+            if (!row || x == 5000) {
                 stop = true;
             }
             else {

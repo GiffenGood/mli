@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mli-login',
@@ -7,12 +8,16 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  feedbackMsg: string;
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private auth: AngularFireAuth, private router: Router)  { }
 
   login(userName: string, password: string) {
+    this.feedbackMsg = 'Logging in...';
     this.auth.auth.signInWithEmailAndPassword(userName, password).then(() => {
-      alert('login!');
+      this.router.navigate(['/customers']);
+    }).catch(e => {
+      this.feedbackMsg = e;
     });
   }
 

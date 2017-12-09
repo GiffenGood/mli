@@ -13,6 +13,8 @@
 
 <h1>{{feedbackMsg}}</h1>
 
-<p *ngFor="let c of customers">
-  {{c.C_FORMALNAME}} {{c.C_TELNO}}
-</p>
+<table>
+<tr *ngFor="let c of customers">
+  <td>{{c.C_FORMALNAME}}</td><td>{{c.C_ZIP}}</td><td>{{c.C_TELNO}}</td> 
+</tr>
+</table>
