@@ -1,20 +1,51 @@
 <h1>Customer Search</h1>
 <form class="example-form" #searchForm="ngForm">
   <mat-form-field>
-    <input matInput name="customerName" placeholder="Customer Name" 
-      [(ngModel)]="search.name" [disabled]="search.zip != ''">
+    <input matInput name="customerName" placeholder="Customer Name" [(ngModel)]="search.name" [disabled]="search.zip != ''">
   </mat-form-field>
   <mat-form-field>
-    <input matInput name="zipCode" placeholder="Zip Code" 
-    [(ngModel)]="search.zip" [disabled]="search.name != ''">
+    <input matInput name="zipCode" placeholder="Zip Code" [(ngModel)]="search.zip" [disabled]="search.name != ''">
   </mat-form-field>
-  <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()" >Search</button>
+  <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()">
+    <mat-icon>search</mat-icon>
+    Search
+  </button>
+  <button type="button" mat-raised-button (click)="clear()">
+    <mat-icon>clear</mat-icon>
+    Clear
+  </button>
 </form>
 
 <h1>{{feedbackMsg}}</h1>
 
-<table>
-<tr *ngFor="let c of customers">
-  <td>{{c.C_FORMALNAME}}</td><td>{{c.C_ZIP}}</td><td>{{c.C_TELNO}}</td> 
-</tr>
-</table>
+<div *ngIf="customers && customers.filteredData.length >0">
+
+  <mat-table [dataSource]="customers">
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let cust"> {{cust.C_FORMALNAME}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="zip">
+      <mat-header-cell *matHeaderCellDef> Zip Code </mat-header-cell>
+      <mat-cell *matCellDef="let cust"> {{cust.C_ZIP}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['name','zip']"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: ['name','zip']"></mat-row>
+
+  </mat-table>
+
+  <div class="mli-row">
+    <button type="button" mat-raised-button (click)="doPage('prev')">
+      <mat-icon>skip_previous</mat-icon>
+      Prev
+    </button>
+    <button type="button" mat-raised-button (click)="doPage('next')">
+      Next
+      <mat-icon>skip_next</mat-icon>
+    </button>
+  </div>
+
+</div>

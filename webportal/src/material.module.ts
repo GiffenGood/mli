@@ -11,7 +11,9 @@ import { NgModule } from '@angular/core';
         am.MatInputModule,
         am.MatGridListModule,
         am.MatSidenavModule,
-        am.MatIconModule
+        am.MatIconModule,
+        am.MatPaginatorModule,
+        am.MatTableModule
     ],
     exports: [BrowserAnimationsModule,
         am.MatButtonModule,
@@ -21,7 +23,9 @@ import { NgModule } from '@angular/core';
         am.MatInputModule,
         am.MatGridListModule,
         am.MatSidenavModule,
-        am.MatIconModule
+        am.MatIconModule,
+        am.MatPaginatorModule,
+        am.MatTableModule
     ]
 })
 

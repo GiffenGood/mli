@@ -1,0 +1,13 @@
+.mat-table {
+    overflow: auto;
+    /* max-height: 500px; */
+  }
+
+  .mli-row{
+      margin-top: 10px;
+  }
+
+ /* .mat-header-cell{
+      font-weight: bolder;
+      font-size: 14px;
+  } */

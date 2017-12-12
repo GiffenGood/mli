@@ -9,9 +9,9 @@ https://www.udemy.com/styling-angular-applications-with-angular-material/learn/v
 2- Add Route Guard
 3- Layout Customer Search
     how to handle small devices.
-4- Immplement Detail
-
-
+    look into angular flex and dropping cols of grid.
+4- Implement Detail
+5- Close slider on small for factor.
 
 # Webportal
 
