@@ -91,7 +91,7 @@ export class CustomerListComponent implements OnInit {
 
     let startAfterSN: fb.firestore.DocumentSnapshot = null;
     if (direction === 'prev') {
-      console.log('popped',this.lastDocStack.pop().data().C_FORMALNAME);
+      console.log('popped', this.lastDocStack.pop().data().C_FORMALNAME);
     }
 
     startAfterSN = this.lastDocStack[this.lastDocStack.length - 1];
