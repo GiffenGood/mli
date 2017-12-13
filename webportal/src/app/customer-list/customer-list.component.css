@@ -3,11 +3,19 @@
     /* max-height: 500px; */
   }
 
-  .mli-row{
+  #nav{
       margin-top: 10px;
+  }
+
+  #nav button {
+
   }
 
  /* .mat-header-cell{
       font-weight: bolder;
       font-size: 14px;
   } */
+
+  a {
+      color : white;
+  }

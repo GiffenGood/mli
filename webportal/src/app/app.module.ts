@@ -15,6 +15,7 @@ import { routes } from './routes';
 
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     LoginComponent,
     CustomerListComponent,
     MainMenuComponent,
-    SideNavComponent
+    SideNavComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,
