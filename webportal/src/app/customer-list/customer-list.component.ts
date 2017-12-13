@@ -11,6 +11,11 @@ function getNewSearch() {
   };
 }
 
+interface IDocNode {
+  first: fb.firestore.DocumentSnapshot;
+  last: fb.firestore.DocumentSnapshot;
+}
+
 @Component({
   selector: 'mli-customer-list',
   templateUrl: './customer-list.component.html',
@@ -21,7 +26,7 @@ export class CustomerListComponent implements OnInit {
   customers = new MatTableDataSource<Element>([]);
   searching = false;
   feedbackMsg = '';
-  lastDocStack: fb.firestore.DocumentSnapshot[] = [];
+  lastDocStack: IDocNode[] = [];
   search = { name: '', zip: '19426' };
 
   constructor(private angularfireStore: AngularFirestore) { }
@@ -66,15 +71,16 @@ export class CustomerListComponent implements OnInit {
     const data = [];
     this.feedbackMsg = 'Searching...';
     query.limit(this.docLimit).get().then((sn) => {
-      let last = null;
+      if (sn.docs.length > 0) {
+        this.lastDocStack.push({ first: sn.docs[0], last: sn.docs[sn.docs.length - 1] });
+      }
       sn.forEach(doc => {
         data.push(doc.data());
-        last = doc;
       });
-      this.lastDocStack.push(last);
       this.customers = new MatTableDataSource<Element>(data);
-      console.log(this.customers);
       this.feedbackMsg = (data.length === 0) ? noResultsMsg : '';
+      const node = this.lastDocStack[this.lastDocStack.length - 1];
+      console.log(node.first.data().C_FORMALNAME, node.last.data().C_FORMALNAME);
     }).then(() => {
       this.searching = false;
     }).catch((e) => {
@@ -85,17 +91,30 @@ export class CustomerListComponent implements OnInit {
 
   doPage(direction: 'next' | 'prev') {
     let query = this.buildSearch();
-    if (!query) {
-      return;
-    }
+    if (!query) { return; }
 
-    let startAfterSN: fb.firestore.DocumentSnapshot = null;
     if (direction === 'prev') {
-      console.log('popped', this.lastDocStack.pop().data().C_FORMALNAME);
+      this.lastDocStack.pop();
+      const node = this.lastDocStack.pop();
+      if (!node) {
+        query.limit(this.docLimit);
+      }
+      else {
+        query = query.startAt(node.first).limit(this.docLimit);
+      }
     }
-
-    startAfterSN = this.lastDocStack[this.lastDocStack.length - 1];
-    query = query.startAfter(startAfterSN).limit(this.docLimit);
+    else {
+      const node = this.lastDocStack[this.lastDocStack.length - 1];
+      query = query.startAfter(node.last).limit(this.docLimit);
+    }
     this.showData(query, 'No More Results Found.');
+  }
+
+  get disablePrev(){
+    return !this.lastDocStack || this.lastDocStack.length === 1;
+  }
+
+  get disableNext(){
+    return !this.customers || this.customers.data.length < this.docLimit;
   }
 }

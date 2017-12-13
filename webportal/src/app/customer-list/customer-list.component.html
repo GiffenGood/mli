@@ -38,11 +38,11 @@
   </mat-table>
 
   <div class="mli-row">
-    <button type="button" mat-raised-button (click)="doPage('prev')">
+    <button [disabled]="disablePrev" type="button" mat-raised-button (click)="doPage('prev')">
       <mat-icon>skip_previous</mat-icon>
       Prev
     </button>
-    <button type="button" mat-raised-button (click)="doPage('next')">
+    <button [disabled]="disableNext" type="button" mat-raised-button (click)="doPage('next')">
       Next
       <mat-icon>skip_next</mat-icon>
     </button>
