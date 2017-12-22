@@ -1,7 +1,7 @@
 .mli-sidenav-container {
     position: absolute;
-    top: 60px;
-    bottom: 60px;
+    top: 56px;
+    bottom: 25px;
     left: 0;
     right: 0;
   }
@@ -31,6 +31,11 @@
     bottom: 0;
     left: 0;
     right: 0;
+    height : 25px;
+    font-size: smaller;
+    display: flex;
+    flex-direction: row-reverse;
+    font-style: italic;
   }
 
   .mli-container{
