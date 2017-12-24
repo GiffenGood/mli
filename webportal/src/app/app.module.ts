@@ -12,10 +12,12 @@ import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     CustomerListComponent,
     MainMenuComponent,
     SideNavComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MaterialModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
