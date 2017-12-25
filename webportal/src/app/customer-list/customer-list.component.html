@@ -1,19 +1,23 @@
 <h1>Customer Search</h1>
-<form class="example-form" #searchForm="ngForm">
-  <mat-form-field>
-    <input matInput name="customerName" placeholder="Customer Name" [(ngModel)]="search.name" [disabled]="search.zip != ''">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput name="zipCode" placeholder="Zip Code" [(ngModel)]="search.zip" [disabled]="search.name != ''">
-  </mat-form-field>
-  <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()">
-    <mat-icon>search</mat-icon>
-    Search
-  </button>
-  <button type="button" mat-raised-button (click)="clear()">
-    <mat-icon>clear</mat-icon>
-    Clear
-  </button>
+<form  #searchForm="ngForm">
+  <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <mat-form-field fxFlex="350px" fxFlex.lt-sm>
+      <input matInput name="customerName" placeholder="Customer Name" [(ngModel)]="search.name" [disabled]="search.zip != ''">
+    </mat-form-field>
+    <mat-form-field fxFlex="180px" fxFlex.lt-sm>
+      <input matInput name="zipCode" placeholder="Zip Code" [(ngModel)]="search.zip" [disabled]="search.name != ''">
+    </mat-form-field>    
+  </div>
+  <div>
+      <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()">
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
+        <button type="button" mat-raised-button (click)="clear()">
+          <mat-icon>clear</mat-icon>
+          Clear
+        </button>    
+  </div>
 </form>
 
 <h1>{{feedbackMsg}}</h1>
@@ -24,7 +28,9 @@
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let cust">  <a [routerLink]="[cust.C_RSN]" routerLinkActive="active">{{cust.C_FORMALNAME}}</a> </mat-cell>
+      <mat-cell *matCellDef="let cust">
+        <a [routerLink]="[cust.C_RSN]" routerLinkActive="active">{{cust.C_FORMALNAME}}</a>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="zip">

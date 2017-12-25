@@ -1,7 +1,31 @@
 <h1>Testing</h1>
-<button (click)="layout = layout === 'row' ? 'column' : 'row' ">Flip</button>
-<div class="container" [fxLayout]='layout' fxLayout.xs="column" >
-    <div >One</div>
-    <div >Two</div>
-    <div >Three</div>
+
+<form class="example-form" #searchForm="ngForm">
+  <div class="container" [fxLayout]='layout' fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <mat-form-field fxFlex>
+      <input matInput name="customerName" placeholder="Customer Name">
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input matInput name="customerAge" placeholder="Customer Age">
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input matInput name="customerGender" placeholder="Customer Gender">
+    </mat-form-field>
+  </div>
+  <div class="container" [fxLayout]='layout' fxLayout.lt-sm="column" fxLayoutGap="10px">
+    <mat-form-field fxFlex="50%">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button fxFlex="none" type="button" mat-raised-button (click)="clear()">
+      <mat-icon>clear</mat-icon>
+      Clear
+    </button>
+  </div>
+</form>
+
+<div fxLayout fxLayoutAlign="start center">
+  <button type="button" mat-raised-button (click)="layout = layout === 'row' ? 'column' : 'row' ">Flip</button>
+  <span fxFlexOffset="15px">{{layout}}</span>
 </div>

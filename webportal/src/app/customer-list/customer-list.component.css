@@ -3,18 +3,10 @@
     /* max-height: 500px; */
   }
 
-  #nav{
-      margin-top: 10px;
+  #nav  {
+      margin-top: 1em;
+      margin-bottom: 1em;
   }
-
-  #nav button {
-
-  }
-
- /* .mat-header-cell{
-      font-weight: bolder;
-      font-size: 14px;
-  } */
 
   a {
       color : white;

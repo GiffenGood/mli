@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../material.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { LoginComponent } from './login/login.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { RouterModule } from '@angular/router';
@@ -18,6 +19,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { TestComponent } from './test/test.component';
+import { MatNativeDateModule } from '@angular/material';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { TestComponent } from './test/test.component';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forRoot(routes),
     FlexLayoutModule
   ],
