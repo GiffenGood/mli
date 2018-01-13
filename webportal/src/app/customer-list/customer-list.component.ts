@@ -13,12 +13,18 @@ import { ICustomer } from '../../../../common/src/customer';
 export class CustomerListComponent implements OnInit {
   customers = new MatTableDataSource<Element>([]);
   feedbackMsg = '';
-  searchArgs = { name: '', zip: '19426' };
+  searchArgs = { name: '', zip: '' };
   searching: boolean;
 
   constructor(private customerListService: CustomerListService) { }
 
   ngOnInit() {
+    if (this.customerListService.hasData) {
+      this.searchArgs = this.customerListService.currentSearchArgs;
+      this.customerListService.currentData.then(docs => {
+        this.buildGrid(docs);
+      });
+    }
   }
 
   disableSearch() {
@@ -34,33 +40,31 @@ export class CustomerListComponent implements OnInit {
 
   doSearch() {
     this.feedbackMsg = 'Searching...';
-    this.customerListService.doSearch(this.searchArgs).then(res => {
-      if (res == null) {
+    this.customerListService.doSearch(this.searchArgs).then(docs => {
+      if (docs == null) {
         this.feedbackMsg = 'An error occurred.';
         return;
       }
-      const data = [];
-      res.forEach(e => {
-          data.push(e.data());
-      });
-      this.customers = new MatTableDataSource<Element>(data);
+      this.buildGrid(docs);
       this.feedbackMsg = '';
     });
   }
 
+  buildGrid(docs: fb.firestore.DocumentSnapshot[]) {
+    const data = [];
+    docs.forEach(e => {
+      data.push(e.data());
+    });
+    this.customers = new MatTableDataSource<Element>(data);
+  }
+
   doPage(direction: 'next' | 'prev') {
-    this.feedbackMsg = 'Searching...';
-    this.customerListService.doPage(direction).then(res => {
-      if (res == null) {
+    this.customerListService.doPage(direction).then(docs => {
+      if (docs == null) {
         this.feedbackMsg = 'An error occurred.';
         return;
       }
-      const data = [];
-      res.forEach(e => {
-          data.push(e.data());
-      });
-      this.customers = new MatTableDataSource<Element>(data);
-      this.feedbackMsg = '';
+      this.buildGrid(docs);
     });
   }
 

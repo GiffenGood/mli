@@ -81,6 +81,16 @@ export class CustomerListService {
     return this.currentPage === 0;
   }
 
+  get hasData(): boolean{
+    return this.pages && this.pages.length !== 0;
+  }
+
+  get currentData():  Promise<fb.firestore.DocumentSnapshot[]>{
+    return new Promise<fb.firestore.DocumentSnapshot[]>((res, rej) => {
+      res(this.pages[this.currentPage]);
+    });
+  }
+
   getNewSearch(): ISearchArgs {
     return {
       name: '',
