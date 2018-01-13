@@ -1,20 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import * as fb from 'firebase/app';
 import { PageEvent } from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
-
-function getNewSearch() {
-  return {
-    name: '',
-    zip: ''
-  };
-}
-
-interface IDocNode {
-  first: fb.firestore.DocumentSnapshot;
-  last: fb.firestore.DocumentSnapshot;
-}
+import { CustomerListService } from './customer-list.service';
+import { ICustomer } from '../../../../common/src/customer';
 
 @Component({
   selector: 'mli-customer-list',
@@ -22,99 +11,64 @@ interface IDocNode {
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-  docLimit = 10;
   customers = new MatTableDataSource<Element>([]);
-  searching = false;
   feedbackMsg = '';
-  lastDocStack: IDocNode[] = [];
-  search = { name: '', zip: '19426' };
+  searchArgs = { name: '', zip: '19426' };
+  searching: boolean;
 
-  constructor(private angularfireStore: AngularFirestore) { }
+  constructor(private customerListService: CustomerListService) { }
 
   ngOnInit() {
   }
 
   disableSearch() {
-    return this.searching ||
-      (!this.search.name && !this.search.zip) ||
-      (this.search.name.length < 3 && this.search.zip.length < 5);
-  }
-
-  buildSearch() {
-    const custRef = this.angularfireStore.firestore.collection('customers');
-    let searchRef: fb.firestore.Query;
-    if (this.search.name) {
-      searchRef = custRef.where('C_FORMALNAME', '>=', this.search.name).orderBy('C_FORMALNAME');
-    }
-    else if (this.search.zip) {
-      searchRef = custRef.where('C_ZIP', '>=', this.search.zip).orderBy('C_ZIP');
-    }
-    return searchRef;
+    return this.feedbackMsg !== '' ||
+      (!this.searchArgs.name && !this.searchArgs.zip) ||
+      (this.searchArgs.name.length < 3 && this.searchArgs.zip.length < 5);
   }
 
   clear() {
-    this.search = getNewSearch();
+    this.searchArgs = this.customerListService.getNewSearch();
     this.customers = new MatTableDataSource<Element>([]);
   }
 
   doSearch() {
-    const query = this.buildSearch();
-    if (!query) {
-      return;
-    }
-    this.showData(query, 'No Results Found.');
-  }
-
-  showData(query: fb.firestore.Query, noResultsMsg: string) {
-    this.searching = true;
-    this.customers = new MatTableDataSource<Element>([]);
-    const data = [];
     this.feedbackMsg = 'Searching...';
-    query.limit(this.docLimit).get().then((sn) => {
-      if (sn.docs.length > 0) {
-        this.lastDocStack.push({ first: sn.docs[0], last: sn.docs[sn.docs.length - 1] });
+    this.customerListService.doSearch(this.searchArgs).then(res => {
+      if (res == null) {
+        this.feedbackMsg = 'An error occurred.';
+        return;
       }
-      sn.forEach(doc => {
-        data.push(doc.data());
+      const data = [];
+      res.forEach(e => {
+          data.push(e.data());
       });
       this.customers = new MatTableDataSource<Element>(data);
-      this.feedbackMsg = (data.length === 0) ? noResultsMsg : '';
-      const node = this.lastDocStack[this.lastDocStack.length - 1];
-      console.log(node.first.data().C_FORMALNAME, node.last.data().C_FORMALNAME);
-    }).then(() => {
-      this.searching = false;
-    }).catch((e) => {
-      this.feedbackMsg = 'An error occured';
-      console.log(e);
+      this.feedbackMsg = '';
     });
   }
 
   doPage(direction: 'next' | 'prev') {
-    let query = this.buildSearch();
-    if (!query) { return; }
-
-    if (direction === 'prev') {
-      this.lastDocStack.pop();
-      const node = this.lastDocStack.pop();
-      if (!node) {
-        query.limit(this.docLimit);
+    this.feedbackMsg = 'Searching...';
+    this.customerListService.doPage(direction).then(res => {
+      if (res == null) {
+        this.feedbackMsg = 'An error occurred.';
+        return;
       }
-      else {
-        query = query.startAt(node.first).limit(this.docLimit);
-      }
-    }
-    else {
-      const node = this.lastDocStack[this.lastDocStack.length - 1];
-      query = query.startAfter(node.last).limit(this.docLimit);
-    }
-    this.showData(query, 'No More Results Found.');
+      const data = [];
+      res.forEach(e => {
+          data.push(e.data());
+      });
+      this.customers = new MatTableDataSource<Element>(data);
+      this.feedbackMsg = '';
+    });
   }
 
-  get disablePrev(){
-    return !this.lastDocStack || this.lastDocStack.length === 1;
+  get disablePrev() {
+    return this.customerListService.disablePrev;
   }
 
-  get disableNext(){
-    return !this.customers || this.customers.data.length < this.docLimit;
+  get disableNext() {
+    return !this.customers || this.customers.data.length < this.customerListService.pageSize;
   }
 }

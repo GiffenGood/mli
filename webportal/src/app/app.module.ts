@@ -20,6 +20,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { TestComponent } from './test/test.component';
 import { MatNativeDateModule } from '@angular/material';
+import { CustomerListService } from './customer-list/customer-list.service';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { MatNativeDateModule } from '@angular/material';
     RouterModule.forRoot(routes),
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [CustomerListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
