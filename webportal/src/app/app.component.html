@@ -9,7 +9,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="mli-sidenav-container">
-    <mat-sidenav #side mode="side" opened="true" class="mli-sidenav">
+    <mat-sidenav #side mode="side" [opened]="showNav" class="mli-sidenav">
       <mli-side-nav></mli-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>

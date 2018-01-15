@@ -1,8 +1,7 @@
-import { ICustomer } from './../../../common/src/customer';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { MatDrawer } from '@angular/material';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   selector: 'mli-app-root',
@@ -10,8 +9,7 @@ import { MatDrawer } from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  customers: ICustomer[];
-
+  showNav = true;
   toggle(sideNav: MatDrawer) {
     if (sideNav.opened) {
       sideNav.close();
@@ -21,18 +19,9 @@ export class AppComponent {
     }
   }
 
-  constructor(private db: AngularFirestore) {
-  }
-
-  fetch() {
-    this.db.firestore.collection('customers').get().then((res) => {
-      this.customers = [];
-      res.docs.forEach((sn) => {
-        if (sn.exists) {
-          this.customers.push(<ICustomer>sn.data());
-        }
-        console.log(this.customers);
-      });
-    });
+  constructor(private media: ObservableMedia) {
+    media.asObservable()
+      .filter((change: MediaChange) => change.mqAlias === 'xs' || change.mqAlias === 'sm')
+      .subscribe(() => this.showNav = false);
   }
 }
