@@ -1,18 +1,7 @@
-https://github.com/angular/angularfire2/blob/master/docs/firestore/documents.md
-
-https://coursetro.com/posts/code/67/Angular-4-Material-Tutorial
-
-https://www.udemy.com/styling-angular-applications-with-angular-material/learn/v4/t/lecture/6640478?start=0
-
-
-0- Move customerFetching over to a server to preserve state when moving around the app.
 1- Finish Login 
+    Password Reset.
 2- Add Route Guard
-3- Layout Customer Search
-    how to handle small devices.
-    look into angular flex and dropping cols of grid.
-4- Implement Detail
-5- Close slider on small for factor.
+    https://gnomeontherun.com/2017/03/02/guards-and-login-redirects-in-angular/
 
 # Webportal
 
