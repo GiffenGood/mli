@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { ICustomer } from '../../../../common/src/customer';
+import { CustomerDetailService } from './customer-detail.service';
 
 @Component({
   selector: 'mli-customer-detail',
@@ -8,13 +10,17 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./customer-detail.component.css']
 })
 export class CustomerDetailComponent implements OnInit {
-  id: Observable<string>;
+  id: string;
+  customer: ICustomer;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private customerDetailService: CustomerDetailService) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.paramMap.map(p => p['id']);
-    console.log(this.id);
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.customerDetailService.get(this.id).then(cust => {
+      this.customer = cust;
+      console.log(cust);
+    });
   }
-
 }

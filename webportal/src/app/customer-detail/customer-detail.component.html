@@ -1,3 +1,53 @@
-<p>
-  customer-detail works! {{id}}
-</p>
+<h1>{{customer?.C_FORMALNAME}}</h1>
+<div class="row">
+  <label>Address: </label> {{customer?.C_ADDRESS}}</div>
+<div class="row" *ngIf="customer?.C_ADRSX">
+  <label>Address2: </label> {{customer?.C_ADRSX}}</div>
+<div class="row" fxLayout="row wrap" >
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>City: </label> {{customer?.C_CITY}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>State: </label> {{customer?.C_STATE}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Zip: </label> {{customer?.C_ZIP}}
+  </div>
+</div>
+
+<div class="row" fxLayout="row wrap" >
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Contact: </label> {{customer?.C_CONTACT}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Telephone: </label> {{customer?.C_TELNO}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Fax: </label> {{customer?.C_FAXNO}}
+  </div>
+</div>
+
+<div class="row" fxLayout="row wrap" >
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Total Volume: </label> {{customer?.C_TOTVOLUME | currency:'USD'}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>YTD Volume: </label> {{customer?.C_YTDVOLUME | currency:'USD'}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Tax Exempt: </label> {{customer?.C_TAXEXEMPT}}
+  </div>
+</div>
+
+<div class="row" fxLayout="row wrap" >
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Email: </label> {{customer?.C_EMAIL}}
+  </div>
+  <div fxFlex="33%" fxFlex.lt-sm="100%">
+    <label>Web Site: </label> {{customer?.C_WEBSITE}}
+  </div>
+</div>
+
+<div class="row">
+  <label>Note: </label> {{customer?.C_NOTE}}
+</div>
