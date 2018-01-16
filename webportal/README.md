@@ -1,7 +1,8 @@
+a- Logoff Button -- try a matbutton or style a link.
+
 1- Finish Login 
     Password Reset.
-2- Add Route Guard
-    https://gnomeontherun.com/2017/03/02/guards-and-login-redirects-in-angular/
+
 
 # Webportal
 

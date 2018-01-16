@@ -10,6 +10,7 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 })
 export class AppComponent {
   showNav = true;
+  displayName: string;
   toggle(sideNav: MatDrawer) {
     if (sideNav.opened) {
       sideNav.close();
@@ -19,9 +20,14 @@ export class AppComponent {
     }
   }
 
-  constructor(private media: ObservableMedia) {
+  constructor(private media: ObservableMedia, private auth: AngularFireAuth) {
     media.asObservable()
       .filter((change: MediaChange) => change.mqAlias === 'xs' || change.mqAlias === 'sm')
       .subscribe(() => this.showNav = false);
+
+    this.auth.authState
+      .subscribe(user => {
+        this.displayName = user.email;
+      });
   }
 }

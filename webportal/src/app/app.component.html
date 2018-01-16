@@ -1,11 +1,12 @@
 <div>
 
-  <mat-toolbar color="primary" class="mli-header">
-    <button mat-icon-button (click)="toggle(side)">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1> MLI Web Portal </h1>
-    <mat-icon>cloud</mat-icon>
+  <mat-toolbar color="primary" class="mli-header" fxLayout="row">
+      <button mat-icon-button (click)="toggle(side)">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1> MLI Web Portal </h1>
+      <mat-icon>cloud</mat-icon>      
+      <div fxFlex><a href="#">Logoff</a></div>
   </mat-toolbar>
 
   <mat-sidenav-container class="mli-sidenav-container">
@@ -19,8 +20,9 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 
-  <mat-toolbar color="accent" class="mli-footer">
-    Mobile Lift Inc. &copy;2017
+  <mat-toolbar color="accent" class="mli-footer" fxLayout>
+    <div fxFlex>{{displayName}}</div>
+    <div fxFlex>Mobile Lift Inc. &copy;2017</div>
   </mat-toolbar>
 
 </div>
