@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   feedbackMsg: string;
 
-  constructor(private auth: AngularFireAuth, private router: Router)  { }
+  constructor(private auth: AngularFireAuth, private router: Router) { }
 
   login(userName: string, password: string) {
     this.feedbackMsg = 'Logging in...';
@@ -18,6 +18,15 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/customers']);
     }).catch(e => {
       this.feedbackMsg = e;
+    });
+  }
+
+  resetPassword(userName: string) {
+    if (!userName) { return; }
+    this.auth.auth.sendPasswordResetEmail(userName).then(() => {
+      this.feedbackMsg = 'Password reset sent.  Check Email.';
+    }, () => {
+      this.feedbackMsg = 'Error sending password reset email.';
     });
   }
 

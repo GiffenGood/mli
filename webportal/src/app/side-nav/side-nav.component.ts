@@ -15,7 +15,7 @@ export class SideNavComponent implements OnInit {
 
   logOff() {
     this.auth.auth.signOut().then(() => {
-      this.router.navigate(['/login'],);
+      this.router.navigate(['/login']);
     });
   }
 
