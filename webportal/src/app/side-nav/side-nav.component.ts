@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mli-side-nav',
@@ -7,14 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   color: string;
+  loggedIn: boolean;
 
-  constructor() { }
+  constructor(private router: Router, private auth: AngularFireAuth) { }
 
-  log(msg: any) {
-    console.log(msg);
+  logOff() {
+    this.auth.auth.signOut().then(() => {
+      this.router.navigate(['/login'],);
+    });
   }
 
   ngOnInit() {
+    this.auth.authState
+      .map(u => !u)
+      .subscribe(loggedIn => {
+        this.loggedIn = loggedIn;
+      });
   }
-
 }
