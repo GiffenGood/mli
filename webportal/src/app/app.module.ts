@@ -22,6 +22,7 @@ import { TestComponent } from './test/test.component';
 import { MatNativeDateModule } from '@angular/material';
 import { CustomerListService } from './customer-list/customer-list.service';
 import { CustomerDetailService } from './customer-detail/customer-detail.service';
+import { AuthGuardService } from './authRouteGuard';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { CustomerDetailService } from './customer-detail/customer-detail.service
     RouterModule.forRoot(routes),
     FlexLayoutModule
   ],
-  providers: [CustomerListService, CustomerDetailService],
+  providers: [CustomerListService, CustomerDetailService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
