@@ -1,8 +1,5 @@
-a- Logoff Button -- try a matbutton or style a link.
-
-1- Finish Login 
-    Password Reset.
-
+1) No results message.
+3) change icon.
 
 # Webportal
 

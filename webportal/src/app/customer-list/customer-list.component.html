@@ -2,7 +2,7 @@
 <form  #searchForm="ngForm">
   <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="10px">
     <mat-form-field fxFlex="350px" fxFlex.lt-sm>
-      <input matInput name="customerName" placeholder="Customer Name" [(ngModel)]="searchArgs.name" [disabled]="searchArgs?.zip != ''">
+      <input mliAutofocus="true" matInput name="customerName" placeholder="Customer Name" [(ngModel)]="searchArgs.name" [disabled]="searchArgs?.zip != ''">
     </mat-form-field>
     <mat-form-field fxFlex="180px" fxFlex.lt-sm>
       <input matInput name="zipCode" placeholder="Zip Code" [(ngModel)]="searchArgs.zip" [disabled]="searchArgs?.name != ''">

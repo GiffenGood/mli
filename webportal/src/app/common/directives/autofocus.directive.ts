@@ -1,0 +1,26 @@
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+
+@Directive({
+  selector: '[mliAutofocus]'
+})
+export class AutofocusDirective implements OnInit {
+  private _autofocus;
+
+  constructor(private el: ElementRef) {
+    console.log(el);
+  }
+
+  ngOnInit() {
+    console.log('autofocus');
+    if (this._autofocus || typeof this._autofocus === 'undefined') {
+      // For SSR (server side rendering)
+      // this is not safe. Use: https://github.com/angular/angular/issues/15008#issuecomment-285141070)
+      this.el.nativeElement.focus();
+    }
+  }
+
+  @Input() set mliAutofocus(condition: boolean) {
+    console.log('setting autofocus', condition);
+    this._autofocus = condition !== false;
+  }
+}

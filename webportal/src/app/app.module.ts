@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material';
 import { CustomerListService } from './customer-list/customer-list.service';
 import { CustomerDetailService } from './customer-detail/customer-detail.service';
 import { AuthGuardService } from './authRouteGuard';
+import { AutofocusDirective } from './common/directives/autofocus.directive';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AuthGuardService } from './authRouteGuard';
     MainMenuComponent,
     SideNavComponent,
     CustomerDetailComponent,
-    TestComponent
+    TestComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
