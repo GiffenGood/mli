@@ -1,13 +1,13 @@
 <div id="container">
-  <button routerLinkActive="active" mat-raised-button  routerLink="/login" *ngIf="loggedIn">
+  <button routerLinkActive="active" mat-raised-button routerLink="/login" *ngIf="loggedIn">
     <mat-icon>vpn_key</mat-icon>
     <span>Login</span>
   </button>
   <button routerLinkActive="active" mat-raised-button *ngIf="!loggedIn" (click)="logOff()">
     <mat-icon>vpn_key</mat-icon>
     <span>LogOff</span>
-  </button>  
-  <button routerLinkActive="active"  mat-raised-button routerLink="/customers">
+  </button>
+  <button routerLinkActive="active" mat-raised-button routerLink="/customers">
     <mat-icon>person_outline</mat-icon>
     <span>Customers</span>
   </button>
@@ -15,5 +15,4 @@
     <mat-icon>favorites</mat-icon>
     <span>Favorites</span>
   </button>
-
 </div>
