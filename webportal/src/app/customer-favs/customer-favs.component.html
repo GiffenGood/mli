@@ -1,3 +1,23 @@
-<p>
-  customer-favs works!
-</p>
+<h1>Favorites</h1>
+
+<mat-table [dataSource]="customers">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let cust">
+      <a [routerLink]="['/customers',cust.C_RSN]" routerLinkActive="active">{{cust.C_FORMALNAME}}</a>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="zip">
+    <mat-header-cell *matHeaderCellDef> Zip Code </mat-header-cell>
+    <mat-cell *matCellDef="let cust"> {{cust?.C_ZIP}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="telno">
+    <mat-header-cell *matHeaderCellDef> Telephone </mat-header-cell>
+    <mat-cell *matCellDef="let cust"> {{cust?.C_TELNO}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['name','zip','telno']"></mat-header-row>
+  <mat-row *matRowDef="let myRowData; columns: ['name','zip','telno']"></mat-row>
+</mat-table>

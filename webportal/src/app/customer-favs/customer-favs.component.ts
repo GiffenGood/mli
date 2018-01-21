@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ICustomer } from '../../../../common/src/customer';
+import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'mli-customer-favs',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer-favs.component.css']
 })
 export class CustomerFavsComponent implements OnInit {
+  customers =  new MatTableDataSource<Element>([]);
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.customers = new MatTableDataSource<Element>(this.activatedRoute.snapshot.data['customers']);
   }
-
 }

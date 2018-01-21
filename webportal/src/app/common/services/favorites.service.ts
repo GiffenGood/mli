@@ -22,9 +22,22 @@ export class FavoritesService {
   }
 
   removeFavorite(customerRSN: string) {
-    console.log('removed');
     return this.angularfireStore.firestore.collection('users')
       .doc(this.auth.auth.currentUser.uid)
       .collection('favorites').doc(customerRSN).delete();
+  }
+
+  getFavs() {
+    return this.angularfireStore.firestore.collection('users')
+      .doc(this.auth.auth.currentUser.uid)
+      .collection('favorites').get().then((data) => {
+        let customerPromises = [];
+        data.forEach(fav => {
+          customerPromises.push(this.angularfireStore.firestore.collection('customers').doc(fav.id).get().then((sh) => {
+            return sh.data();
+          }));
+        });
+        return Promise.all(customerPromises);
+      });
   }
 }

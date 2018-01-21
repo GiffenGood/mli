@@ -27,6 +27,7 @@ import { AutofocusDirective } from './common/directives/autofocus.directive';
 import { FavoritesService } from './common/services/favorites.service';
 import { CustomerFavsComponent } from './customer-favs/customer-favs.component';
 import { CustomerDetailResolver } from './customer-detail/customer-detail-resolver';
+import { CustomerFavsResolver } from './customer-favs/customer-favs-resolver';
 
 
 @NgModule({
@@ -59,7 +60,9 @@ import { CustomerDetailResolver } from './customer-detail/customer-detail-resolv
     CustomerDetailService,
     AuthGuardService,
     FavoritesService,
-    CustomerDetailResolver],
+    CustomerDetailResolver,
+    CustomerFavsResolver
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
