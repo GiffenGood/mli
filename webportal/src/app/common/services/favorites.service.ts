@@ -7,24 +7,24 @@ export class FavoritesService {
 
   constructor(private angularfireStore: AngularFirestore, private auth: AngularFireAuth) { }
 
-  addFavorite(customerRSN: string) {
+  addFavorite(customerRSN: Number) {
     return this.angularfireStore.firestore.collection('users')
       .doc(this.auth.auth.currentUser.uid)
-      .collection('favorites').doc(customerRSN).set({});
+      .collection('favorites').doc(customerRSN.toString()).set({});
   }
 
-  isFavorite(customerRSN: string) {
+  isFavorite(customerRSN: Number) {
     return this.angularfireStore.firestore.collection('users')
       .doc(this.auth.auth.currentUser.uid)
-      .collection('favorites').doc(customerRSN).get().then(data => {
+      .collection('favorites').doc(customerRSN.toString()).get().then(data => {
         return data.exists;
       });
   }
 
-  removeFavorite(customerRSN: string) {
+  removeFavorite(customerRSN: Number) {
     return this.angularfireStore.firestore.collection('users')
       .doc(this.auth.auth.currentUser.uid)
-      .collection('favorites').doc(customerRSN).delete();
+      .collection('favorites').doc(customerRSN.toString()).delete();
   }
 
   getFavs() {

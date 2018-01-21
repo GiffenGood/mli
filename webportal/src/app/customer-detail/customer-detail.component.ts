@@ -11,7 +11,6 @@ import { FavoritesService } from '../common/services/favorites.service';
   styleUrls: ['./customer-detail.component.css']
 })
 export class CustomerDetailComponent implements OnInit {
-  id: string;
   customer: ICustomer;
   isFav = false;
 
@@ -19,18 +18,21 @@ export class CustomerDetailComponent implements OnInit {
     private favoritesService: FavoritesService) { }
 
   addToFavorites() {
-    this.favoritesService.addFavorite(this.id).then(() => {
+    this.favoritesService.addFavorite(this.customer.C_RSN).then(() => {
       this.isFav = true;
     });
   }
 
   removeFavorite() {
-    this.favoritesService.removeFavorite(this.id).then(() => {
+    this.favoritesService.removeFavorite(this.customer.C_RSN).then(() => {
       this.isFav = false;
     });
   }
 
   ngOnInit() {
-      this.customer = this.activatedRoute.snapshot.data['customer'];
+    this.customer = this.activatedRoute.snapshot.data['customer'];
+    this.favoritesService.isFavorite(this.customer.C_RSN).then((res) => {
+      this.isFav = res;
+    });
   }
 }

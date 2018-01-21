@@ -26,7 +26,6 @@ export class CustomerListService {
   }
 
   executeAndReturn(query: fb.firestore.Query): IPromise<fb.firestore.DocumentSnapshot[]> {
-    console.log('executing fb query');
     const data: fb.firestore.DocumentSnapshot[] = [];
     return <IPromise<fb.firestore.DocumentSnapshot[]>>query.limit(this.pageSize).get().then((sn) => {
       sn.forEach(doc => {

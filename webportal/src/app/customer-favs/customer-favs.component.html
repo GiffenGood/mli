@@ -1,6 +1,6 @@
 <h1>Favorites</h1>
 
-<mat-table [dataSource]="customers">
+<mat-table [dataSource]="customers" *ngIf="customers?.filteredData.length >0">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
     <mat-cell *matCellDef="let cust">
@@ -21,3 +21,5 @@
   <mat-header-row *matHeaderRowDef="['name','zip','telno']"></mat-header-row>
   <mat-row *matRowDef="let myRowData; columns: ['name','zip','telno']"></mat-row>
 </mat-table>
+
+<h2 *ngIf="!customers?.filteredData.length >0">No Favorites Yet!</h2>
