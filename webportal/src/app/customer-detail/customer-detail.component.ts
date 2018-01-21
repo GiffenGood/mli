@@ -16,7 +16,6 @@ export class CustomerDetailComponent implements OnInit {
   isFav = false;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private customerDetailService: CustomerDetailService,
     private favoritesService: FavoritesService) { }
 
   addToFavorites() {
@@ -32,12 +31,6 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params['id'];
-    this.customerDetailService.get(this.id).then(cust => {
-      this.customer = cust;
-    });
-    this.favoritesService.isFavorite(this.id).then((res) => {
-      this.isFav = res;
-    });
+      this.customer = this.activatedRoute.snapshot.data['customer'];
   }
 }

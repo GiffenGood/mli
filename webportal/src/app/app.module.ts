@@ -26,6 +26,7 @@ import { AuthGuardService } from './authRouteGuard';
 import { AutofocusDirective } from './common/directives/autofocus.directive';
 import { FavoritesService } from './common/services/favorites.service';
 import { CustomerFavsComponent } from './customer-favs/customer-favs.component';
+import { CustomerDetailResolver } from './customer-detail/customer-detail-resolver';
 
 
 @NgModule({
@@ -53,7 +54,12 @@ import { CustomerFavsComponent } from './customer-favs/customer-favs.component';
     RouterModule.forRoot(routes),
     FlexLayoutModule
   ],
-  providers: [CustomerListService, CustomerDetailService, AuthGuardService, FavoritesService],
+  providers: [
+    CustomerListService,
+    CustomerDetailService,
+    AuthGuardService,
+    FavoritesService,
+    CustomerDetailResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
