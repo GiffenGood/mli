@@ -25,6 +25,7 @@ import { CustomerDetailService } from './customer-detail/customer-detail.service
 import { AuthGuardService } from './authRouteGuard';
 import { AutofocusDirective } from './common/directives/autofocus.directive';
 import { FavoritesService } from './common/services/favorites.service';
+import { CustomerFavsComponent } from './customer-favs/customer-favs.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { FavoritesService } from './common/services/favorites.service';
     SideNavComponent,
     CustomerDetailComponent,
     TestComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    CustomerFavsComponent
   ],
   imports: [
     BrowserModule,
