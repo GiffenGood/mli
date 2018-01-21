@@ -28,10 +28,9 @@ export class AppComponent {
     this.auth.authState
       .subscribe(user => {
         if (user) {
-          console.log(user.email);
           this.displayName = user.email;
         }
-        else{
+        else {
           console.log('not logged in');
         }
       });

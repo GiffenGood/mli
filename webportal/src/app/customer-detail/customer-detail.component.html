@@ -1,9 +1,10 @@
 <h1>{{customer?.C_FORMALNAME}}</h1>
-<div class="row">
+
+<div>
   <label>Address: </label> {{customer?.C_ADDRESS}}</div>
 <div class="row" *ngIf="customer?.C_ADRSX">
   <label>Address2: </label> {{customer?.C_ADRSX}}</div>
-<div class="row" fxLayout="row wrap" >
+<div class="row" fxLayout="row wrap">
   <div fxFlex="33%" fxFlex.lt-sm="100%">
     <label>City: </label> {{customer?.C_CITY}}
   </div>
@@ -15,7 +16,7 @@
   </div>
 </div>
 
-<div class="row" fxLayout="row wrap" >
+<div class="row" fxLayout="row wrap">
   <div fxFlex="33%" fxFlex.lt-sm="100%">
     <label>Contact: </label> {{customer?.C_CONTACT}}
   </div>
@@ -27,7 +28,7 @@
   </div>
 </div>
 
-<div class="row" fxLayout="row wrap" >
+<div class="row" fxLayout="row wrap">
   <div fxFlex="33%" fxFlex.lt-sm="100%">
     <label>Total Volume: </label> {{customer?.C_TOTVOLUME | currency:'USD'}}
   </div>
@@ -39,7 +40,7 @@
   </div>
 </div>
 
-<div class="row" fxLayout="row wrap" >
+<div class="row" fxLayout="row wrap">
   <div fxFlex="33%" fxFlex.lt-sm="100%">
     <label>Email: </label> {{customer?.C_EMAIL}}
   </div>
@@ -51,3 +52,17 @@
 <div class="row">
   <label>Note: </label> {{customer?.C_NOTE}}
 </div>
+
+<div class="row" *ngIf="!isFav">
+  <button type="button" mat-raised-button (click)="addToFavorites()">
+    <mat-icon>favorite</mat-icon>
+    Add To Favorites
+  </button>
+</div>
+
+<div class="row" *ngIf="isFav">
+    <button type="button" mat-raised-button (click)="removeFavorite()">
+      <mat-icon>favorite</mat-icon>
+      Remove Favorite
+    </button>
+  </div>

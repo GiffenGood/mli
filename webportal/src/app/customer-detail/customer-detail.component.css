@@ -3,5 +3,10 @@ label{
 }
 
 .row {
-    padding-top:6px;
+    padding-top:15px;
 }
+
+h1 {
+    display: inline-block
+}
+

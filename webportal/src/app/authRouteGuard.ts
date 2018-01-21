@@ -10,12 +10,12 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private router: Router, private auth: AngularFireAuth) {}
+  constructor(private router: Router, private auth: AngularFireAuth) { }
 
   canActivate(route: ActivatedRouteSnapshot) {
     return this.auth.authState
-        .take(1)
-        .map(authState => !!authState)
-        .do(auth => !auth ? this.router.navigate(['/login']) : true);
+      .take(1)
+      .map(authState => !!authState)
+      .do(auth => !auth ? this.router.navigate(['/login']) : true);
   }
 }

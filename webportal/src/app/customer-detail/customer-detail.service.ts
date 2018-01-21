@@ -11,7 +11,7 @@ export class CustomerDetailService {
 
   get(customerId: string) {
     return this.angularfireStore.firestore.collection('customers').doc(customerId).get().then((doc) => {
-      return <ICustomer> doc.data();
+      return <ICustomer>doc.data();
     });
   }
 }
