@@ -14,7 +14,6 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
@@ -29,6 +28,7 @@ import { CustomerFavsComponent } from './customer-favs/customer-favs.component';
 import { CustomerDetailResolver } from './customer-detail/customer-detail-resolver';
 import { CustomerFavsResolver } from './customer-favs/customer-favs-resolver';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -55,7 +55,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatNativeDateModule,
     RouterModule.forRoot(routes),
     FlexLayoutModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     CustomerListService,

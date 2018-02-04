@@ -5,9 +5,13 @@ service cloud.firestore {
       allow write: if  get(/databases/$(database)/documents/users/$(request.auth.uid)).data.level == 0
     }
     
- 	match /users/{document=**} {
+ 	match /users/{user} {
       allow read: if  get(/databases/$(database)/documents/users/$(request.auth.uid)).data.level == 0
       allow write: if  get(/databases/$(database)/documents/users/$(request.auth.uid)).data.level == 0
+
+      match /favorites/{favorite} {
+        allow read, write: if user == request.auth.uid
+      }
     }    
   }
 }
