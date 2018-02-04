@@ -1,7 +1,7 @@
 <div>
 
   <mat-toolbar color="primary" class="mli-header">
-      <button mat-icon-button (click)="toggle(side)">
+      <button mat-icon-button (click)="toggle()">
         <mat-icon>menu</mat-icon>
       </button>
       <h1> MLI Web Portal </h1>
@@ -9,7 +9,7 @@
   </mat-toolbar>
 
   <mat-sidenav-container class="mli-sidenav-container">
-    <mat-sidenav #side mode="side" [opened]="showNav" class="mli-sidenav">
+    <mat-sidenav #side mode="over" [opened]="showNav" class="mli-sidenav">
       <mli-side-nav></mli-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>

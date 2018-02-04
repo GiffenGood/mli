@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { MatDrawer } from '@angular/material';
+import { MatDrawer, MatSidenav } from '@angular/material';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { Router } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'mli-app-root',
@@ -9,18 +11,13 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('side') sideNav: MatSidenav;
   showNav = true;
   displayName: string;
-  toggle(sideNav: MatDrawer) {
-    if (sideNav.opened) {
-      sideNav.close();
-    }
-    else {
-      sideNav.open();
-    }
-  }
 
-  constructor(private media: ObservableMedia, private auth: AngularFireAuth) {
+  constructor(private media: ObservableMedia,
+    private auth: AngularFireAuth,
+    private router: Router) {
     media.asObservable()
       .filter((change: MediaChange) => change.mqAlias === 'xs' || change.mqAlias === 'sm')
       .subscribe(() => this.showNav = false);
@@ -34,5 +31,20 @@ export class AppComponent {
           console.log('not logged in');
         }
       });
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.sideNav.close();
+      }
+    });
+  }
+
+  toggle() {
+    if (this.sideNav.opened) {
+      this.sideNav.close();
+    }
+    else {
+      this.sideNav.open();
+    }
   }
 }
