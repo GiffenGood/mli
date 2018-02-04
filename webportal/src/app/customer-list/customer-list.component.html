@@ -1,24 +1,30 @@
-<h1>Customer Search</h1>
-<form  #searchForm="ngForm">
-  <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="10px">
-    <mat-form-field fxFlex="350px" fxFlex.lt-sm>
-      <input mliAutofocus="true" matInput name="customerName" placeholder="Customer Name" [(ngModel)]="searchArgs.name" [disabled]="searchArgs?.zip != ''">
-    </mat-form-field>
-    <mat-form-field fxFlex="180px" fxFlex.lt-sm>
-      <input matInput name="zipCode" placeholder="Zip Code" [(ngModel)]="searchArgs.zip" [disabled]="searchArgs?.name != ''">
-    </mat-form-field>    
-  </div>
-  <div>
+<mat-expansion-panel id="search" expanded="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Customer Search
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form #searchForm="ngForm">
+    <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="10px">
+      <mat-form-field fxFlex="350px" fxFlex.lt-sm>
+        <input mliAutofocus="true" matInput name="customerName" placeholder="Customer Name" [(ngModel)]="searchArgs.name" [disabled]="searchArgs?.zip != ''">
+      </mat-form-field>
+      <mat-form-field fxFlex="180px" fxFlex.lt-sm>
+        <input matInput name="zipCode" placeholder="Zip Code" [(ngModel)]="searchArgs.zip" [disabled]="searchArgs?.name != ''">
+      </mat-form-field>
+    </div>
+    <div>
       <button type="button" mat-raised-button (click)="doSearch()" [disabled]="disableSearch()">
-          <mat-icon>search</mat-icon>
-          Search
-        </button>
-        <button type="button" mat-raised-button (click)="clear()">
-          <mat-icon>clear</mat-icon>
-          Clear
-        </button>    
-  </div>
-</form>
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
+      <button type="button" mat-raised-button (click)="clear()">
+        <mat-icon>clear</mat-icon>
+        Clear
+      </button>
+    </div>
+  </form>
+</mat-expansion-panel>
 
 <h1>{{feedbackMsg}}</h1>
 

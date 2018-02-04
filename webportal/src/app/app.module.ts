@@ -28,6 +28,7 @@ import { FavoritesService } from './common/services/favorites.service';
 import { CustomerFavsComponent } from './customer-favs/customer-favs.component';
 import { CustomerDetailResolver } from './customer-detail/customer-detail-resolver';
 import { CustomerFavsResolver } from './customer-favs/customer-favs-resolver';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { CustomerFavsResolver } from './customer-favs/customer-favs-resolver';
     MatDatepickerModule,
     MatNativeDateModule,
     RouterModule.forRoot(routes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatExpansionModule
   ],
   providers: [
     CustomerListService,
@@ -62,7 +64,7 @@ import { CustomerFavsResolver } from './customer-favs/customer-favs-resolver';
     FavoritesService,
     CustomerDetailResolver,
     CustomerFavsResolver
-   ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
