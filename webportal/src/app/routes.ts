@@ -16,13 +16,24 @@ export const routes: Routes = [
         canActivate: [AuthGuardService],
         resolve: { customer: CustomerDetailResolver }
     },
-    { path: 'customers', component: CustomerListComponent, canActivate: [AuthGuardService] },
+    {
+        path: 'customers',
+        component: CustomerListComponent,
+        canActivate: [AuthGuardService]
+    },
     {
         path: 'favorites',
         component: CustomerFavsComponent,
         canActivate: [AuthGuardService],
-        resolve: {customers: CustomerFavsResolver}
+        resolve: { customers: CustomerFavsResolver }
     },
-    { path: 'test', component: TestComponent, canActivate: [AuthGuardService] },
-    { path: 'login', component: LoginComponent }
+    {
+        path: 'test',
+        component: TestComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
 ];

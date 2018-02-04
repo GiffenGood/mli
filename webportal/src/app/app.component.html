@@ -1,10 +1,15 @@
+<div class="spinner-container" fxLayout="row" fxLayoutAlign="center center" *ngIf="spinnerService?.showSpinner">
+  <div>
+    <mat-spinner mode="indeterminate"></mat-spinner>
+  </div>
+</div>
 <div>
   <mat-toolbar color="primary" class="mli-header">
-      <button mat-icon-button (click)="toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <h1> MLI Web Portal </h1>
-      <mat-icon>cloud</mat-icon>      
+    <button mat-icon-button (click)="toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1> MLI Web Portal </h1>
+    <mat-icon>cloud</mat-icon>
   </mat-toolbar>
 
   <mat-sidenav-container class="mli-sidenav-container">
@@ -12,7 +17,9 @@
       <mli-side-nav></mli-side-nav>
     </mat-sidenav>
     <mat-sidenav-content>
+
       <div class="mli-container">
+
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

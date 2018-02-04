@@ -53,5 +53,17 @@
     padding-right: 15px;
   }
 
+  .spinner-container {
+    position: absolute;
+    top:30%;
+    left: 0;
+    right: 0;
+    z-index: 100; 
+  }
+
+  .spinner-container mat-spinner{
+    z-index: 100; 
+  }
+
 
   

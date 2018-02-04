@@ -29,6 +29,7 @@ import { CustomerDetailResolver } from './customer-detail/customer-detail-resolv
 import { CustomerFavsResolver } from './customer-favs/customer-favs-resolver';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerService } from './spinner.service';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AuthGuardService,
     FavoritesService,
     CustomerDetailResolver,
-    CustomerFavsResolver
+    CustomerFavsResolver,
+    SpinnerService
   ],
   bootstrap: [AppComponent]
 })

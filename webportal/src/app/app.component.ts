@@ -4,6 +4,7 @@ import { MatDrawer, MatSidenav } from '@angular/material';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
+import { SpinnerService } from './spinner.service';
 
 @Component({
   selector: 'mli-app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
 
   constructor(private media: ObservableMedia,
     private auth: AngularFireAuth,
-    private router: Router) {
+    private router: Router,
+    private spinnerService: SpinnerService) {
     media.asObservable()
       .filter((change: MediaChange) => change.mqAlias === 'xs' || change.mqAlias === 'sm')
       .subscribe(() => this.showNav = false);
