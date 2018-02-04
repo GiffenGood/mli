@@ -1,5 +1,5 @@
-1) No results message.
-3) change icon.
+# have spinner service user observables.
+
 
 # Webportal
 

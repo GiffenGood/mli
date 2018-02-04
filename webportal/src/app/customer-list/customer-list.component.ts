@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material';
 import { MatTableDataSource } from '@angular/material';
 import { CustomerListService } from './customer-list.service';
 import { ICustomer } from '../../../../common/src/customer';
+import { SpinnerService } from '../spinner.service';
 
 @Component({
   selector: 'mli-customer-list',
@@ -16,7 +17,8 @@ export class CustomerListComponent implements OnInit {
   searchArgs = { name: '', zip: '' };
   searching: boolean;
 
-  constructor(private customerListService: CustomerListService) { }
+  constructor(private customerListService: CustomerListService,
+    private spinnerService: SpinnerService) { }
 
   ngOnInit() {
     if (this.customerListService.hasData) {
@@ -40,6 +42,7 @@ export class CustomerListComponent implements OnInit {
 
   doSearch() {
     this.feedbackMsg = 'Searching...';
+    this.spinnerService.startSpinner();
     this.customerListService.doSearch(this.searchArgs).then(docs => {
       if (docs == null) {
         this.feedbackMsg = 'An error occurred.';
@@ -47,7 +50,7 @@ export class CustomerListComponent implements OnInit {
       }
       this.buildGrid(docs);
       this.feedbackMsg = '';
-    });
+    }).then(() => this.spinnerService.stopSpinner());
   }
 
   buildGrid(docs: fb.firestore.DocumentSnapshot[]) {
@@ -59,13 +62,14 @@ export class CustomerListComponent implements OnInit {
   }
 
   doPage(direction: 'next' | 'prev') {
+    this.spinnerService.startSpinner();
     this.customerListService.doPage(direction).then(docs => {
       if (docs == null) {
         this.feedbackMsg = 'An error occurred.';
         return;
       }
       this.buildGrid(docs);
-    });
+    }).then(() => this.spinnerService.stopSpinner());
   }
 
   get disablePrev() {
