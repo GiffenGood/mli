@@ -9,11 +9,17 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./customer-favs.component.css']
 })
 export class CustomerFavsComponent implements OnInit {
-  customers =  new MatTableDataSource<Element>([]);
+  customers = new MatTableDataSource<Element>([]);
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.customers = new MatTableDataSource<Element>(this.activatedRoute.snapshot.data['customers']);
+  }
+
+  doFilter(filter: HTMLInputElement) {
+    if (this.customers) {
+      this.customers.filter = filter.value;
+    }
   }
 }

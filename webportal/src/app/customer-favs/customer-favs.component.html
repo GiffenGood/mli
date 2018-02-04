@@ -1,4 +1,13 @@
-<h1>Favorites</h1>
+<mat-expansion-panel id="search" expanded="true" id="filter">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Favorites
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-form-field>
+    <input matInput placeholder="Filter" #filter (keyup)="doFilter(filter)">
+  </mat-form-field>
+</mat-expansion-panel>
 
 <mat-table [dataSource]="customers" *ngIf="customers?.filteredData.length > 0">
   <ng-container matColumnDef="name">
