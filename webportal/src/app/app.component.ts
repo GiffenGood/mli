@@ -19,7 +19,7 @@ export class AppComponent {
   constructor(private media: ObservableMedia,
     private auth: AngularFireAuth,
     private router: Router,
-    private spinnerService: SpinnerService) {
+    public spinnerService: SpinnerService) {
     media.asObservable()
       .filter((change: MediaChange) => change.mqAlias === 'xs' || change.mqAlias === 'sm')
       .subscribe(() => this.showNav = false);
